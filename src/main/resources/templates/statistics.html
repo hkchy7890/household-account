@@ -18,23 +18,20 @@
 		<table class="table">
 			<tr>
 				<th></th>
-				<th></th>
 				<th>計</th>
 				<th>食費</th>
 				<th>交通費</th>
 				<th>雑費</th>			
 			</tr>
 			<tr th:each = "m : ${bymonth}">
-				<td style="width:90px;">[[${m[0]}]]年</td>
-				<td style="width:60px;">[[${m[1]}]]月</td>
-				<td style="width:120px;"><b>￥[[${#numbers.formatDecimal(m[5], 0, 'COMMA', 0, 'POINT')}]]</b></td>
+				<td style="width:150px;">[[${m[0]}]]</td>
+				<td style="width:120px;"><b>￥[[${#numbers.formatDecimal(m[4], 0, 'COMMA', 0, 'POINT')}]]</b></td>
+				<td style="width:120px;">￥[[${#numbers.formatDecimal(m[1], 0, 'COMMA', 0, 'POINT')}]]</td>
 				<td style="width:120px;">￥[[${#numbers.formatDecimal(m[2], 0, 'COMMA', 0, 'POINT')}]]</td>
 				<td style="width:120px;">￥[[${#numbers.formatDecimal(m[3], 0, 'COMMA', 0, 'POINT')}]]</td>
-				<td style="width:120px;">￥[[${#numbers.formatDecimal(m[4], 0, 'COMMA', 0, 'POINT')}]]</td>
 			</tr>
 			
 			<tr class="total">
-				<td></td>
 				<td>総計</td>
 				<td>￥[[${#numbers.formatDecimal(sum, 0, 'COMMA', 0, 'POINT')}]]</td>
 				<td>￥[[${#numbers.formatDecimal(food, 0, 'COMMA', 0, 'POINT')}]]</td>
