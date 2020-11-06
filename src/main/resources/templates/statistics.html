@@ -24,7 +24,7 @@
 				<th>雑費</th>			
 			</tr>
 			<tr th:each = "m : ${bymonth}">
-				<td style="width:150px;">[[${#dates.format(today, 'yyyy年MM月')}]]</td>
+				<td style="width:150px;">[[${#dates.format(m[0], 'yyyy年MM月')}]]</td>
 				<td style="width:120px;"><b>￥[[${#numbers.formatDecimal(m[1], 0, 'COMMA', 0, 'POINT')}]]</b></td>
 				<td style="width:120px;">￥[[${#numbers.formatDecimal(m[2], 0, 'COMMA', 0, 'POINT')}]]</td>
 				<td style="width:120px;">￥[[${#numbers.formatDecimal(m[3], 0, 'COMMA', 0, 'POINT')}]]</td>
