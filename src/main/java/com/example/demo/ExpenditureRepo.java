@@ -14,7 +14,8 @@ public interface ExpenditureRepo extends JpaRepository<Expenditure, Long> {
 	@Query(nativeQuery = true, value = "select category1, sum(cost) from my_expenditure group by category1")
 	List<Object[]> findAllByCategory();
 	
-	@Query(nativeQuery = true, value = "select year(pdate), month(pdate), sum(case when category1 = '食費' then cost end) as food, sum(case when category1 = '交通費' then cost end) as traffic, sum(case when category1 = '雑費' then cost end) as others, sum(cost) as sum_total from my_expenditure group by year(pdate), month(pdate)")
+	//@Query(nativeQuery = true, value = "select year(pdate), month(pdate), sum(case when category1 = '食費' then cost end) as food, sum(case when category1 = '交通費' then cost end) as traffic, sum(case when category1 = '雑費' then cost end) as others, sum(cost) as sum_total from my_expenditure group by year(pdate), month(pdate)")
+	@Query(nativeQuery = true, value = "SELECT DATE_TRUNC('month',pdate) AS  year_month, sum(cost) AS subtotal, sum(cost) FILTER (where category1 = '食費') AS food, sum(cost) FILTER (where category1 = '交通費') AS traffic, sum(cost) FILTER (where category1 = '雑費') AS others FROM my_expenditure GROUP BY DATE_TRUNC('month',pdate)")
 	List<Object[]> findAllByMonth();
 	
 	@Query(nativeQuery = true, value = "select sum(cost) from my_expenditure where category1 = '食費'")
